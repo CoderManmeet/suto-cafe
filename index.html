@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumière Café</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Playfair+Display:wght@500;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<!-- TAILWIND -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+:root{
+  --bg:#0e0b08;
+  --gold:#c9a96e;
+  --muted:#8a7a65;
+}
+
+body{
+  background:var(--bg);
+  color:#f2e8d5;
+  font-family:'Inter',sans-serif;
+}
+
+.serif{font-family:'Cormorant Garamond',serif;}
+.gold{color:var(--gold);}
+
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s ease;
+}
+.reveal.active{opacity:1;transform:none;}
+
+.menu-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(201,169,110,0.15);
+  transition:.5s;
+}
+.menu-card:hover{
+  transform:translateY(-12px);
+  box-shadow:0 40px 80px rgba(0,0,0,.5);
+}
+
+.icon-circle{
+  width:80px;height:80px;
+  border:1px solid rgba(201,169,110,.4);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  color:var(--gold);
+}
+
+
+.lux-btn{
+  position:relative;
+  padding:18px 60px;
+  border:1px solid var(--gold);
+  letter-spacing:0.35em;
+  font-size:14px;
+  transition:.6s;
+  overflow:hidden;
+}
+
+.lux-btn::before{
+  content:'';
+  position:absolute;
+  top:0;left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(201,169,110,.4),transparent);
+  transition:.6s;
+}
+
+.lux-btn:hover::before{
+  left:100%;
+}
+
+.lux-btn:hover{
+  background:var(--gold);
+  color:#000;
+  box-shadow:0 0 40px rgba(201,169,110,.6);
+}
+
+
+
+#loader{
+  position:fixed;
+  inset:0;
+  background:#0b0907;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.loader-logo{
+  font-size:3rem;
+  letter-spacing:.4em;
+  color:var(--gold);
+}
+
+
+
+
+
+.coffee-svg{
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%,100%{ transform: translateY(0); }
+  50%{ transform: translateY(-18px); }
+}
+
+.coffee-svg path{
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: draw 2.5s ease forwards;
+}
+
+@keyframes draw{
+  to{ stroke-dashoffset: 0; }
+}
+
+</style>
+</head>
+
+
+
+
+
+<body>
+
+
+    <div id="loader">
+  <h1 class="loader-logo">SUTO CAFÈ</h1>
+</div>
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 px-10 py-6 flex justify-between bg-black/40 backdrop-blur">
+  <div class="serif gold tracking-[0.35em] text-xl">SUTO CAFÈ</div>
+  <div class="hidden md:flex gap-10 text-sm tracking-widest">
+    <a href="#story">ABOUT</a>
+    <a href="#menu">MENU</a>
+    <a href="#ambience">AMBIENCE</a>
+    <a href="#reserve">RESERVE</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="min-h-screen flex items-center justify-center text-center px-6 gsap-section">
+  <div class="max-w-3xl reveal">
+    <p class="tracking-[0.5em] gold mb-6 text-sm">OUR STORY</p>
+    <h1 class="serif text-5xl md:text-6xl mb-6">
+      Crafted for the <span class="gold italic">Connoisseur</span>
+    </h1>
+
+    <!-- SVG COFFEE -->
+<div class="mt-16 flex justify-center">
+<svg class="coffee-svg" width="220" height="220" viewBox="0 0 200 200" fill="none">
+  <path d="M50 80h90c5 0 10 5 10 10v30c0 25-20 45-45 45H95c-25 0-45-20-45-45V90c0-5 5-10 10-10Z"
+        stroke="var(--gold)" stroke-width="2"/>
+  <path d="M140 95h15c15 0 20 25 0 25h-15"
+        stroke="var(--gold)" stroke-width="2"/>
+  <path d="M70 50c-10-15 10-25 0-40"
+        stroke="var(--gold)" stroke-width="2"/>
+  <path d="M100 50c-10-15 10-25 0-40"
+        stroke="var(--gold)" stroke-width="2"/>
+  <path d="M130 50c-10-15 10-25 0-40"
+        stroke="var(--gold)" stroke-width="2"/>
+</svg>
+</div>
+
+
+    
+    <p class="text-[var(--muted)] leading-relaxed">
+      Nestled within the heart of the city, Lumière is more than a café — it is a refuge of quiet elegance.
+    </p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="py-32 px-6 bg-black/30 gsap-section">
+<h2 class="serif text-4xl text-center gold mb-20 reveal">The Menu</h2>
+
+<div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+  <div class="menu-card p-10 text-center reveal">
+    <div class="text-3xl mb-4">☕</div>
+    <h3 class="serif text-xl mb-2">Pour Over</h3>
+    <p class="text-sm text-[var(--muted)]">Hand-poured perfection</p>
+    <p class="gold mt-4">₹200</p>
+    <button class="menu-btn mt-6">Order</button>
+
+  </div>
+
+  <div class="menu-card p-10 text-center reveal">
+    <div class="text-3xl mb-4">🍵</div>
+    <h3 class="serif text-xl mb-2">Matcha Ceremony</h3>
+    <p class="text-sm text-[var(--muted)]">Ceremonial Uji matcha</p>
+    <p class="gold mt-4">₹400</p>
+    <button class="menu-btn mt-6">Order</button>
+
+  </div>
+
+  <div class="menu-card p-10 text-center reveal">
+    <div class="text-3xl mb-4">🥐</div>
+    <h3 class="serif text-xl mb-2">Viennoiserie</h3>
+    <p class="text-sm text-[var(--muted)]">Buttery baked elegance</p>
+    <p class="gold mt-4">₹700</p>
+    <button class="menu-btn mt-6">Order</button>
+
+  </div>
+
+
+</div>
+
+
+</section>
+
+<!-- AMBIENCE -->
+<section id="ambience" class="py-32 px-6 gsap-section">
+<h2 class="serif text-4xl gold text-center mb-20 reveal">Ambience</h2>
+
+<div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-16 text-center">
+  <div class="reveal">
+    <div class="icon-circle mx-auto mb-6">🕯</div>
+    <h3 class="serif mb-2">Candlelit Evenings</h3>
+    <p class="text-sm text-[var(--muted)]">Warm amber glow</p>
+  </div>
+
+  <div class="reveal">
+    <div class="icon-circle mx-auto mb-6">🎷</div>
+    <h3 class="serif mb-2">Jazz & Vinyl</h3>
+    <p class="text-sm text-[var(--muted)]">Curated melodies</p>
+  </div>
+
+  <div class="reveal">
+    <div class="icon-circle mx-auto mb-6">📖</div>
+    <h3 class="serif mb-2">Reading Nooks</h3>
+    <p class="text-sm text-[var(--muted)]">Lose yourself in pages</p>
+  </div>
+</div>
+</section>
+
+<!-- CTA -->
+<section id="reserve" class="py-32 text-center bg-black/40">
+  <div class="reveal">
+    <!-- <p class="tracking-[0.4em] gold mb-4 text-sm">RESERVE YOUR MOMENT</p> -->
+
+    <a class="lux-btn mt-12 inline-block">
+  RESERVE A TABLE
+</a>
+
+
+
+    <h2 class="serif text-5xl mb-10">
+      Your Table <span class="italic gold">Awaits</span>
+    </h2>
+    <a class="border border-[var(--gold)] px-12 py-4 tracking-[0.3em] hover:bg-[var(--gold)] hover:text-black transition">
+      BOOK NOW
+    </a>
+  </div>
+</section>
+
+<!-- JS -->
+<!-- <script>
+const reveal=()=>document.querySelectorAll('.reveal').forEach(e=>{
+  if(e.getBoundingClientRect().top<window.innerHeight*0.85)
+    e.classList.add('active');
+});
+window.addEventListener('scroll',reveal);
+reveal();
+</script> -->
+
+
+
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+
+const animate=()=>{
+  reveals.forEach((el,i)=>{
+    const top=el.getBoundingClientRect().top;
+    if(top<window.innerHeight*0.85){
+      setTimeout(()=>el.classList.add('active'),i*120);
+    }
+  });
+}
+
+window.addEventListener('scroll',animate);
+animate();
+</script>
+
+
+
+ <!-- GSAP scripts -->
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+
+
+
+
+
+<script>
+gsap.to(".loader-logo",{
+  opacity:0,
+  y:-40,
+  duration:1.2,
+  delay:1.2,
+  ease:"power4.inOut"
+});
+
+gsap.to("#loader",{
+  y:"-100%",
+  duration:1.5,
+  delay:2,
+  ease:"power4.inOut"
+});
+</script>
+
+
+<script>
+gsap.from("#hero h1",{
+  y:120,
+  opacity:0,
+  duration:1.4,
+  ease:"power4.out"
+});
+
+gsap.from("#hero svg",{
+  scale:0.7,
+  opacity:0,
+  duration:1.6,
+  delay:.4,
+  ease:"expo.out"
+});
+</script>
+
+
+<script>
+gsap.to(".loader-logo",{ opacity:0, y:-40, duration:1.2, delay:1.2 });
+gsap.to("#loader",{ y:"-100%", duration:1.5, delay:2 });
+</script>
+
+
+
+
+
+
+</body>
+</html>
